@@ -1,0 +1,7 @@
+Flask
+requests
+openai
+gunicorn
+python-dotenv
+logging
+pyyaml
