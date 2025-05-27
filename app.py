@@ -158,7 +158,7 @@ def webhook_telegram():
         reply = response.choices[0].message.content 
         logger.info('Sea-Lion replied')
 
-        cleaned_reply = reply.replace('**', ' ') if reply is not None else '' 
+        cleaned_reply = reply.replace('**', '') if reply is not None else '' 
         
         # Send that reply back to the user via Telegram
         send_url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
@@ -166,7 +166,7 @@ def webhook_telegram():
             'chat_id': chat_id,
             'text': cleaned_reply,
         }
-        
+
         resppnse = requests.post(send_url, json=payload)
         if resppnse.status_code != 200:
             # Log errors if Telegram API call fails
