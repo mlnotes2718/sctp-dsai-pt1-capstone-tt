@@ -159,14 +159,11 @@ def webhook_telegram():
         logger.info('Sea-Lion replied')
 
 
-
-
         # Send that reply back to the user via Telegram
         send_url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
         payload = {
             'chat_id': chat_id,
             'text': reply,
-            'parse_mode': None,  # Use MarkdownV2 for formatting
         }
         resppnse = requests.post(send_url, json=payload)
         if resppnse.status_code != 200:
