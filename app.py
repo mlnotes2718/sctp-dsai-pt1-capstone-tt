@@ -19,6 +19,7 @@ import logging
 from flask import Flask, request, jsonify
 import requests
 from openai import OpenAI
+import markdown
 
 # ------------------------------------------------------------------------------
 # Environment & Configuration
@@ -156,11 +157,16 @@ def webhook_telegram():
         reply = response.choices[0].message.content 
         logger.info('Sea-Lion replied')
 
+        # Convert the reply to HTML using Markdown for formatting
+        # This allows us to use Markdown features like code blocks in the reply
+        reply_html = markdown.markdown(reply or "", extensions=['fenced_code', 'codehilite'])
+
         # Send that reply back to the user via Telegram
         send_url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
         payload = {
             'chat_id': chat_id,
-            'text': reply
+            'text': reply_html,
+            'parse_mode': 'HTML',  # Use HTML to format the message
         }
         resp = requests.post(send_url, json=payload)
         if resp.status_code != 200:
