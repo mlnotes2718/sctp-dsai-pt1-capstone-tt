@@ -153,8 +153,8 @@ def webhook_telegram():
             ]
         )
         # Extract the assistant’s reply text
-        reply = response.choices[0].message.content
-        logger.info('Sea-Lion reply: %s', reply)
+        reply = response.choices[0].message.content 
+        logger.info('Sea-Lion replied')
 
         # Send that reply back to the user via Telegram
         send_url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
