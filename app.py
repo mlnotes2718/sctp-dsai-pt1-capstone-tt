@@ -106,28 +106,6 @@ def set_webhook():
     return jsonify({'status': 'Webhook set successfully'}), 200
 
 
-# ------------------------------------------------------------------------------
-# Function to escape MarkdownV2 special characters
-# ------------------------------------------------------------------------------
-# This function escapes special characters in MarkdownV2 format for Telegram messages.
-# It ensures that characters like underscores, asterisks, and others are properly escaped
-# to prevent formatting issues in the messages sent by the bot.
-
-import re
-
-# 1. Build a regex character class for all MarkdownV2 specials, except backslash
-MD2_SPECIALS = r"_\*\[\]\(\)~`>#+\-=|{}\.!"
-
-# 2. Compile a pattern that matches either a backslash or any of the above
-_PATTERN = re.compile(rf"(\\|[{MD2_SPECIALS}])")
-
-def escape_markdown_v2(text: str) -> str:
-    """
-    Escape text for Telegram MarkdownV2.
-    
-    This will prefix every special character (including backslash) with a backslash.
-    """
-    return _PATTERN.sub(r"\\\1", text)
 
 # ------------------------------------------------------------------------------
 # Flask App & Telegram Webhook Handler
@@ -180,15 +158,15 @@ def webhook_telegram():
         reply = response.choices[0].message.content 
         logger.info('Sea-Lion replied')
 
-        escaped_reply = escape_markdown_v2(reply or "")
+
 
 
         # Send that reply back to the user via Telegram
         send_url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
         payload = {
             'chat_id': chat_id,
-            'text': escaped_reply,
-            'parse_mode': 'MarkdownV2',  # Use MarkdownV2 for formatting
+            'text': reply,
+            'parse_mode': None,  # Use MarkdownV2 for formatting
         }
         resppnse = requests.post(send_url, json=payload)
         if resppnse.status_code != 200:
