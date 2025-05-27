@@ -81,7 +81,7 @@ def set_webhook():
     # Log the configuration details
     logger.info('Using Sea-Lion model: %s', MODEL)
     logger.info('Using Telegram webhook URL: %s', WEBHOOK_URL)
-    logger.info('Using System Prompt: %s', SYSTEM_PROMPT)
+    logger.info('Using System Prompt set')
 
     # On startup, remove any existing webhook to clear pending updates
     delete_webhook_url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/deleteWebhook'
@@ -157,21 +157,16 @@ def webhook_telegram():
         reply = response.choices[0].message.content 
         logger.info('Sea-Lion replied')
 
-        # Convert the reply to HTML using Markdown for formatting
-        # This allows us to use Markdown features like code blocks in the reply
-        reply_html = markdown.markdown(reply or "", extensions=['fenced_code', 'codehilite'])
-
         # Send that reply back to the user via Telegram
         send_url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
         payload = {
             'chat_id': chat_id,
-            'text': reply_html,
-            'parse_mode': 'HTML',  # Use HTML to format the message
+            'text': reply,
         }
-        resp = requests.post(send_url, json=payload)
-        if resp.status_code != 200:
+        resppnse = requests.post(send_url, json=payload)
+        if resppnse.status_code != 200:
             # Log errors if Telegram API call fails
-            logger.error('Failed to send message: %s - %s', resp.status_code, resp.text)
+            logger.error('Failed to send message: %s - %s', resppnse.status_code, resppnse.text)
         else:
             logger.info('Message sent successfully to chat %s', chat_id)
 
