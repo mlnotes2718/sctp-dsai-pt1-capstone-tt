@@ -123,8 +123,11 @@ def index():
     """
     Call Telegram's getWebhookInfo endpoint and return the JSON payload.
     """
-    resp = requests.get(f"{telegram_base_url}/getWebhookInfo")
-    return resp.json()
+    response = requests.get(f"{telegram_base_url}/getWebhookInfo")
+    if response.ok:
+        logger.info('Webhook info retrieved successfully')
+        message = "Welcome to Sea-Lion in Telegram. Webhook is running well."
+    return jsonify({message})
 
 
 
