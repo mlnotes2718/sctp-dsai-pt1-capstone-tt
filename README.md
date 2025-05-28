@@ -8,11 +8,13 @@ This is an improved prototyped version of LLM app based on our capstone project.
 
 To provide a customized financial advisor that is suitable for Singapore context and deployed the service to telegram as a chatbot.
 
+
 **Technology:**
-- **LLM Service:** We use Sea-Lion as our preferred LLM as it has been fine tuned with local context. We use API instead of downloading pre-trained model as it requires more compute power while hosting our model. 
+- **LLM Service:** We use Sea-Lion as our preferred LLM as it has been fine tuned with local context. We use API instead of downloading pre-trained model as it more cost effective. 
 - **Frontend:** Telegram Chatbot (via BotFather)
 - **Backend:** Flask Framework to be run as a web services (gunicorn) on render.com
 - **Full Stack:** Python + Flask (webhook) + Sea-Lion API + Gunicorn on render.com
+
 
 **Limitation:**
 - **API Rate Limit:** 10 requests per minute per user. Enough for prototyping and testing.
@@ -20,11 +22,13 @@ To provide a customized financial advisor that is suitable for Singapore context
 - **No Web Search Capabilities:** Currently our chatbot is not able to conduct web search to get the mst updated information.
 - **Not able to Handle User Files**: Currently, this chatbot is not able to handle filers user uploaded.
 
-**Privacy Policy**
+
+**Privacy Policy:**
 
 As we are using Sea-Lion API, the privacy policy will be the same as Sea-Lion. More information can be obtained at https://sea-lion.ai/privacy-policy/
 
-**Usage**
+**Usage:**
+
 This customized chatbot is designed to answer a narrow field, our instruction to the LLM service is as follows: 
 > You are a specialised financial planning assistant, dedicated to serving residents of Singapore.  
 > Your sole purpose is to answer financial questions with a focus on:  
@@ -35,9 +39,10 @@ This customized chatbot is designed to answer a narrow field, our instruction to
 
 Details of the system prompt can be found in `config.yaml`
 
-Reference:
-https://sea-lion.ai/
-https://docs.sea-lion.ai/guides/inferencing/api
-https://sea-lion.ai/privacy-policy/
+**Reference:**
+
+- https://sea-lion.ai/
+- https://docs.sea-lion.ai/guides/inferencing/api
+- https://sea-lion.ai/privacy-policy/
 
 
