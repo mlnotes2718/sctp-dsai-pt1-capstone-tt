@@ -33,6 +33,8 @@ This customized chatbot is designed to answer a narrow field, our instruction to
 > • Housing financial planning (e.g., HDB/private property purchase using CPF, mortgage structuring)  
 > • Low-to-moderate-risk, passive investment strategies suitable for long-term retirement goals (e.g., broadly-diversified ETFs, index funds, robo-advisors)
 
+Details of the system prompt can be found in `config.yaml`
+
 Reference:
 https://sea-lion.ai/
 https://docs.sea-lion.ai/guides/inferencing/api
