@@ -127,6 +127,10 @@ def index():
     if response.ok:
         logger.info('Webhook info retrieved successfully')
         message = "Welcome to Sea-Lion in Telegram. Webhook is running well."
+    else:
+        logger.error('Failed to retrieve webhook info: %s - %s', response.status_code, response.text)
+        message = "Error retrieving webhook info. Please check the logs."
+    # Return a simple message in JSON format
     return jsonify({message})
 
 
