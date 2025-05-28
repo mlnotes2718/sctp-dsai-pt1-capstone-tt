@@ -170,10 +170,10 @@ def webhook_telegram():
             'text': cleaned_reply,
         }
 
-        resppnse = requests.post(send_url, json=payload)
-        if resppnse.status_code != 200:
+        response = requests.post(send_url, json=payload)
+        if response.status_code != 200:
             # Log errors if Telegram API call fails
-            logger.error('Failed to send message: %s - %s', resppnse.status_code, resppnse.text)
+            logger.error('Failed to send message: %s - %s', response.status_code, response.text)
         else:
             logger.info('Message sent successfully to chat %s', chat_id)
 
