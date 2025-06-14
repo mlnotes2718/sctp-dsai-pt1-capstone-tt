@@ -39,6 +39,11 @@ This customized chatbot is designed to answer a narrow field, our instruction to
 
 Details of the system prompt can be found in `config.yaml`
 
+**Future Enhancement:**
+- **Preserved Chat History Follow-up Question:** Preserved chat history for 
+- **No Web Search Capabilities:** Currently our chatbot is not able to conduct web search to get the mst updated information.
+- **Not able to Handle User Files**: Currently, this chatbot is not able to handle filers user uploaded.
+
 **Reference:**
 
 - https://sea-lion.ai/
